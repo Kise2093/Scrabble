@@ -1,6 +1,12 @@
-#define MAX_CARD 100
-
 typedef struct
 {
-      char letter [26];
-} SCRABBLE_T;
+        int status;                    /* 0 1 */
+        int card[7];
+
+
+} PLAYER_T;
+
+
+int play();
+
+int resume();
