@@ -6,6 +6,10 @@ typedef struct
 
 } PLAYER_T;
 
+typedef struct
+{
+  
+}
 
 int play();
 
