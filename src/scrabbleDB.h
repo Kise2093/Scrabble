@@ -1,17 +1,12 @@
 typedef struct
 {
-        int status;                    /* 0 1 */
-        int card[7];
+  char alphab;
+  int score;
+}DECK_T;
 
+DECK_T Tile[100];
+//int play();
 
-} PLAYER_T;
+//int resume();
 
-typedef enum
-{
-  'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y'
-  'z'
-}letter;
-
-int play();
-
-int resume();
+void createDeck(DECK_T Tile[100]);
