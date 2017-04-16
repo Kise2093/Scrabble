@@ -9,7 +9,7 @@ int createDeck(int argc, char* argv[])
   char alpabet;
   int score;
   int i;
-  int j;
+  int j = 0;
 
   if(argc<3)
   {
@@ -34,17 +34,12 @@ int createDeck(int argc, char* argv[])
 
     if(amount>0)
     {
-      for(j=0;j<amount;j++)
+      for(j=0+j;j<amount;j++)
       {
         Tile[j].alphab=alphabet;
         Tile[j].score=score;
       }
     }
   }
-
-
-
-
-
 
 }
