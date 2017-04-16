@@ -13,9 +13,8 @@ char letter[LETTER] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','
 
 typedef struct
 {
-  //int cards[100];
   char alphab;
-
+  int score;
 }DECK_T;
 
 DECK_T Tile[100];
