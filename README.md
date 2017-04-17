@@ -1,3 +1,6 @@
 #Scrabble
 
-This program is for CPE 111 project. 
+Scrabble game program.
+Created by TEAM BLACKGROUND
+Kris Jermvivatkul
+Chanchai Pramulmark

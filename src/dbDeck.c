@@ -1,3 +1,9 @@
+/*This function is for creating and printing out deck of card/tile for the game.
+  Created by Kris Jermvivatkul
+  59070503405
+  TEAM BLACKGROUND*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

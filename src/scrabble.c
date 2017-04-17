@@ -1,11 +1,12 @@
+/*This is main file for our entire program.
+  scrabble.c is created by Kris Jermvivatkul
+  Student id 59070503405*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "scrabbleDB.h"
 
 #define CARDS 100
-
-
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
   printf("Welcome to Scrabble Game!!!\n");
 
   printf(">Play\n");
-  printf(">View deck\n");
+  printf(">Deck\n");
   printf(">Resume\n");
 
   DECK_T Tile[100];

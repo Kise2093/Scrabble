@@ -1,6 +1,12 @@
+/*Resume function for resuming to the last save files.
+  TEAM BLACKGROUND
+  59070503405*/
+
 #include <stdio.h>
 #include <string.h>
 #include "scrabbleDB.h"
+
+
 
 void resume()
 {

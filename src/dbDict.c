@@ -3,11 +3,8 @@
  *
  * Implements a dictionary using an external hash table
  *
- * Created by Sally Goldin 1 April 2013 as a sample solution for
- *   CPE113 Lab 10
- *   Modified 22 March 2016 to include code for the two extra credit
- *   assignments.
- *   Modified 27 March 2017 to change bucket count to prime number
+ * This program was created by Aj. Sally.
+ * Will be modify by TEAM BLACKGROUND for project purposes.
  */
 
 #include <stdio.h>

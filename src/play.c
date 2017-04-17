@@ -1,3 +1,7 @@
+/*Function for playing the game
+  TEAM BLACKGROUND
+  59070503405*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +11,9 @@ void play()
 {
 char command[256]; /* store command string */
 char inputline[256]; /* string buffer */
+
+
+/*Reminder to use loop*/
 
 printf("Hey, function play is not ready yet come back later.\n");
 
