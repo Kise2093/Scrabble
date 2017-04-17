@@ -5,8 +5,11 @@ typedef struct
 }DECK_T;
 
 DECK_T Tile[100];
-//int play();
 
-//int resume();
+void play();
+
+void resume();
 
 void createDeck(DECK_T Tile[100]);
+
+void PrintCard(DECK_T Tile[100], int i);

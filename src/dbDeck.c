@@ -44,3 +44,13 @@ void createDeck(DECK_T Tile[100])
   }
 
 }
+
+void PrintCard(DECK_T Tile[100], int i)
+{
+    char letter;
+    int score;
+
+    letter = Tile[i].alphab;
+    score = Tile[i].score;
+    printf ("Card Number %d:  %c %d \n",i+1, letter,score);
+}

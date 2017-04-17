@@ -7,17 +7,6 @@
 
 
 
-void PrintCard(DECK_T Tile[100], int i)
-{
-    char letter;
-    int score;
-
-    letter = Tile[i].alphab;
-    score = Tile[i].score;
-    printf ("Card Number %d:  %c %d \n",i+1, letter,score);
-}
-
-
 int main()
 {
   int deck[CARDS];
@@ -27,30 +16,41 @@ int main()
 
   printf("Welcome to Scrabble Game!!!\n");
 
-  printf("");
+  printf(">Play\n");
+  printf(">View deck\n");
+  printf(">Resume\n");
 
   DECK_T Tile[100];
 
   createDeck(Tile);
 
-for(i=0;i<CARDS;i++)
-  {
-  PrintCard(Tile, i);
-}
-
   memset(command, 0, sizeof(command));
   fgets(inputline, sizeof(inputline), stdin);
   sscanf(inputline, "%s", command);
 
-/*  while(1)
+  while(1)
   {
-    if(!strcasecmp(command,"resume"))
-      resume();
+    if(!strcasecmp(command,"deck"))
+    {
+      for(i=0;i<CARDS;i++)
+        {
+        PrintCard(Tile, i);
+        }
+    return 0;
+    }
     else if(!strcasecmp(command,"play"))
+    {
       play();
+      return 0;
+    }
+    else if(!strcasecmp(command,"resume"))
+    {
+      resume();
+      return 0;
+    }
     else if(!strcasecmp(command,"exit"))
       exit(0);
-    else if(command[0] !=0);
-      printError(111);
-    }*/
+    /*else if(command[0] !=0);
+      printError(111);*/
+    }
   }
