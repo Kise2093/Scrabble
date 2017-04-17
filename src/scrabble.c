@@ -41,7 +41,7 @@ int main()
     else if(!strcasecmp(command,"play"))
     {
       play();
-      return 0;
+      break;
     }
     else if(!strcasecmp(command,"resume"))
     {
