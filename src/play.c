@@ -85,9 +85,9 @@ int get_location(int *row,int *col)
   int *row;
    int *col;
 
-    printf("enter row/col to start (ex: H8) or 'Q' to quit: ");
+    printf("enter row/col to start (ex: 8 8) or 'Q' to quit: ");
     fgets(buffer, sizeof(buffer), stdin);
-	sscanf(buffer, "%s", input);
+	sscanf(buffer, "%d %d", input);
 
     input[0] &= 0x5F; //converts alpha to UPPERCASE
     if (input[0]=='Q')
@@ -155,8 +155,9 @@ sscanf(inputline, "%s", command);
 if(!strcasecmp(command,"play"))
   {
     memset(command, 0, sizeof(command));
+    int row , col ;
 
-    //Insertword();
+    
     get_location(row,col);
     get_direction(dir);
     get_word(word,row,col,dir);
