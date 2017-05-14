@@ -16,16 +16,16 @@ typedef struct _player
 
 }PLAYER_T;
 
-int get_word()
+int get_word(char *word,int row,int col,int dir)
 {
   char *word;
   int row;
   int col;
-   int dir;
-    char *temp=word;
-    char onechar;
+  int dir;
+  char *temp=word;
+  char onechar;
 	char buffer[256];
-  
+
     size_t length;
     printf("enter word, or <ENTER> to restart: ");
 
@@ -49,11 +49,11 @@ int get_word()
   return 0;
 }
 
-int get_direction()
+int get_direction(int *dir)
 {
 	char buffer[256];
     char input[16];
-    int *dir;
+
 
     printf("enter direction 'H'(0) or 'V'(1), or <ENTER> to restart: ");
     fgets(buffer, sizeof(buffer), stdin);
@@ -77,7 +77,7 @@ int get_direction()
 }
 
 
-int get_location()
+int get_location(int *row,int *col)
 {
 	char buffer[256];
     char *temp;
@@ -157,10 +157,9 @@ if(!strcasecmp(command,"play"))
     memset(command, 0, sizeof(command));
 
     //Insertword();
-    get_direction();
-
-    get_location();
-    get_word();
+    get_location(row,col);
+    get_direction(dir);
+    get_word(word,row,col,dir);
 
     printf("Do other player want to challenge this word? (Yes or No)\n");
     fgets(inputline,sizeof(inputline),stdin);

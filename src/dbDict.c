@@ -125,8 +125,9 @@ int buildDictionary(FILE* pFile)
 	     }
           }  /* if no delimiter, just skip the line */
        }
-    printf("With bucket count %d, we got %5.2f%% collisions\n",
-	   BUCKET_COUNT, ((double) collisioncount / insertcount) * 100.0);
+    //printf("With bucket count %d, we got %5.2f%% collisions\n",
+	   //BUCKET_COUNT, ((double) collisioncount / insertcount) * 100.0);
+
     return returnVal;
 }
 
