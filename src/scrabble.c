@@ -7,6 +7,7 @@
 #include "scrabbleDB.h"
 
 #define CARDS 100
+#define FILENAME "oldwordlist.txt"
 
 typedef struct
 {
@@ -68,12 +69,14 @@ int main()
   int i=0;
   char inputline[256]; /* string buffer */
   char command[256]; /* store command string */
+  FILE* pInputFile=NULL;
 
   printf("Welcome to Scrabble Game!!!\n");
 
   printf(">Play\n");
   printf(">Deck\n");
   printf(">Resume\n");
+  printf(">Deck\n");
 
   createBoard();
 
@@ -81,6 +84,15 @@ int main()
 
   createDeck(Tile);
 
+  pInputFile = fopen(FILENAME,"r");
+
+
+if(pInputFile == NULL)
+{
+  printf("(dbDeck.c)NULL:2");
+  return 0;
+}
+  buildDictionary(pInputFile);
   memset(command, 0, sizeof(command));
   fgets(inputline, sizeof(inputline), stdin);
   sscanf(inputline, "%s", command);

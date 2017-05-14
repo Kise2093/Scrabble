@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "abstractHashTable.h"
-#include "timeFunctions.h"
+#include "scrabbleDB.h"
 
 #define BUCKET_COUNT 53
 
@@ -39,7 +39,7 @@ unsigned int bitwiseOpHash(char* key)
         {
 	/* shift up four bits then add in next char */
 	result = (result << 4) + key[i];
-        if (tmp = (result & 0xf0000000))  /* if high bit is set */
+        if ((tmp = (result & 0xf0000000)))  /* if high bit is set */
 	    {
 	    /* XOR result with down shifted tmp */
 	    result = result ^ (tmp >> 24);
@@ -136,15 +136,14 @@ int buildDictionary(FILE* pFile)
  * Arguments
  *   word          -   Word to look up
  */
-void printDefinition(char* word)
+void findWord(char* word)
 {
     DICT_ENTRY_T* pWord = NULL;
-    long microseconds = 0;
     printf("\n");
 
-    recordTime(1);
+
     pWord = (DICT_ENTRY_T*) hashTableLookup(word);
-    microseconds = recordTime(0);
+
     if (pWord == NULL)
        {
        printf("Word '%s' not found in the dictionary\n",word);
@@ -156,50 +155,6 @@ void printDefinition(char* word)
        for (i=0; i < pWord->defcount; i++)
   	  printf("\tDefinition %d: %s\n",i+1,pWord->definition[i]);
        }
-    printf("---- Lookup required %d microseconds\n", microseconds);
     printf("\n");
 
-}
-
-
-int main(int argc, char* argv[])
-{
-
-    FILE * pFp = NULL;           /* used to read input file */
-    int status = 0;              /* for function return values */
-    pFp = fopen("wordlist.txt","r");
-    if (pFp == NULL)
-       {
-       fprintf(stderr,"Error - cannot open file 'wordlist.txt'\n");
-       exit(1);
-       }
-    /* initialize the hash table */
-    status = hashTableInit(BUCKET_COUNT, &bitwiseOpHash);
-    if (!status)
-       {
-       fprintf(stderr,"Error initializing hash table\n");
-       exit(1);
-       }
-    status = buildDictionary(pFp);
-    fclose(pFp);
-    if (!status)
-       {
-       fprintf(stderr,"Allocation error building dictionary\n");
-       exit(1);
-       }
-    /* now loop, looking up words */
-    while (1)
-       {
-       char input[64];
-       char word[64];
-       printf("Find definition for what word ('EXIT' to exit)? ");
-       fgets(input,sizeof(input),stdin);
-       memset(word,0,sizeof(word));
-       sscanf(input,"%s",word);
-       if (strcmp(word,"EXIT") == 0)
-	   break;
-       printDefinition(word);
-       }
-    /* free the hash table before we exit */
-    hashTableFree();
 }
