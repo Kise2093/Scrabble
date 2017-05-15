@@ -143,7 +143,7 @@ int findWord(char* word)
     printf("\n");
 
 
-  //  pWord = (DICT_ENTRY_T*) hashTableLookup(word);
+    pWord = (DICT_ENTRY_T*) hashTableLookup(word);
 
     if (pWord == NULL)
        {

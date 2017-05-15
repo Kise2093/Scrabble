@@ -33,7 +33,7 @@ int insertWord(char *word,int row,int col,int dir)
         // otherwise remove newline char
     word[strcspn(word,"\n")]='\0';
         // and check that only alpha characters are permitted
-    /*while(*temp)
+    while(*temp)
     {
         onechar = *temp++ &= 0x5F; //converts alpha to UPPERCASE
         if (onechar < 'A' || onechar > 'Z')
@@ -41,7 +41,7 @@ int insertWord(char *word,int row,int col,int dir)
             printf("not valid, try again.\n");
             return 0;
         }
-    }*/
+    }
   return 1;
 }
 
@@ -143,6 +143,9 @@ pTail=player;
 
 
 do{
+  
+drawnBoard();
+
 printf("Do you want to play or pass this turn? (play or pass)\n" );
 
 memset(command, 0, sizeof(command));
@@ -174,6 +177,7 @@ if(!strcasecmp(command,"play"))
 
     if(!strcasecmp(command,"yes"))
     {
+      word[strlen(word)-1]='\0';
       findWord(word);
       if(result==0)
       {

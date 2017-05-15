@@ -9,14 +9,6 @@
 #define CARDS 100
 #define FILENAME "oldwordlist.txt"
 
-typedef struct
-{
-char tile[3] ;
-int letterX ;
-int wordX ;
-
-}_board ;
-
 _board field [16][16] ; //Use only 15*15
 
 void createBoard ()
@@ -30,7 +22,7 @@ void createBoard ()
 
         for (j = 0 ;j <15 ; j++)
             {
-            field[i][j].tile[0] = ' ' ;
+            field[i][j].tile = ' ' ;
             field[i][j].letterX = 1 ;
             field[i][j].wordX = 1;
 
@@ -59,6 +51,208 @@ void createBoard ()
 
 
         }
+
+}
+
+void drawnBoard()
+{
+
+int i,j ;
+
+printf("\t\t\t\t\t");
+for (j = 0 ; j <15 ; j++)
+    {
+    printf("  %c  ",65+j);
+    }
+
+
+
+printf("\n");
+printf("\t\t\t\t\t");
+i = 0 ; j = 0 ;
+for (i= 0 ; i < 15 ; i++)
+    {
+    //Open Line at the top
+    for (j=0; j <15 ;j++ )
+        {
+
+        if(field[i][j].wordX == 3)
+            {
+            if (i == 7 && j ==7)
+                {
+                 printf("+++++");
+                }
+            else printf("+++++");
+            }
+        else if (field[i][j].wordX == 2)
+            {
+            printf("+++++");
+            }
+
+        else if (field[i][j].letterX == 3)
+                printf("-----");
+
+        else if (field[i][j].letterX == 2)
+                printf("-----");
+
+        else
+        printf(".....");
+        }
+        printf("\n");
+        printf("\t\t\t\t\t");
+
+    //Line 1 for each position
+    for (j=0 ; j<15 ; j++)
+        {
+
+        if (field[i][j].tile == ' ')
+        {
+
+        if(field[i][j].wordX == 3)
+            {
+            if (i == 7 && j ==7)
+                {
+                printf("|   |");
+                }
+            else printf("+ W +");
+            }
+        else if (field[i][j].wordX == 2)
+            {
+            printf("+ W +");
+            }
+
+        else if (field[i][j].letterX == 3)
+                printf("- L -");
+
+        else if (field[i][j].letterX == 2)
+                printf("- L -");
+
+        else
+        printf("|   |");
+
+        }
+
+        else if (field[i][j].tile != '\0')
+        printf("|   |");
+
+        else
+        printf("|   |");
+        }
+
+    printf("\n");
+    printf("\t\t\t\t\t");
+
+    //Line 2 for each position
+    for (j=0 ; j < 15 ; j++)
+        {
+
+        if (field[i][j].tile == ' ')
+        {
+
+            if(field[i][j].wordX == 3)
+            {
+            if (i == 7 && j ==7)
+                {
+                printf(". X .");
+                }
+           else printf(". X .");
+            }
+
+        else if (field[i][j].wordX == 2)
+            {
+            printf(". X .");
+            }
+        else if (field[i][j].letterX == 3)
+                printf(". X .");
+
+        else if (field[i][j].letterX == 2)
+                printf(". X .");
+
+        else
+        printf("|   |");
+
+        }
+
+        else if (field[i][j].tile != ' ')
+            {
+            printf("|%3c|",field[i][j].tile);
+            }
+
+
+
+        }
+        printf(" %d",i+1);
+        printf("\n");
+        printf("\t\t\t\t\t");
+
+        for (j=0 ; j<15 ; j++)
+        {
+
+        if (field[i][j].tile == ' ')
+        {
+
+        if(field[i][j].wordX == 3)
+            {
+            if ( i == 7 && j ==7 )
+                {
+                printf("|   |");
+                }
+            else printf("+ 3 +");
+            }
+        else if (field[i][j].wordX == 2)
+            {
+            printf("- 2 -");
+            }
+
+        else if (field[i][j].letterX == 3)
+                printf("+ 3 +");
+
+        else if (field[i][j].letterX == 2)
+                printf("- 2 -");
+
+        else if (field[i][j].tile != '\0')
+        printf("|   |");
+        else
+        printf("|   |");
+        }
+
+        else if (field[i][j].tile != ' ')
+            printf("|   |");
+
+        }
+
+    printf("\n");
+    printf("\t\t\t\t\t");
+
+
+    for (j = 0 ; j<15 ; j++)
+        {
+        if(field[i][j].wordX == 3)
+            {
+            if (i == 7 && j ==7)
+                {
+                printf("+++++");
+                }
+            else printf("+++++");
+            }
+        else if (field[i][j].wordX == 2)
+            {
+            printf("+++++");
+            }
+
+        else if (field[i][j].letterX == 3)
+                printf("-----");
+
+        else if (field[i][j].letterX == 2)
+                printf("-----");
+
+        else
+        printf(".....");
+        }
+    printf("\n");
+    printf("\t\t\t\t\t");
+
+    }
 
 }
 
