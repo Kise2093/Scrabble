@@ -137,7 +137,7 @@ int buildDictionary(FILE* pFile)
  * Arguments
  *   word          -   Word to look up
  */
-void findWord(char* word)
+int findWord(char* word)
 {
     DICT_ENTRY_T* pWord = NULL;
     printf("\n");
@@ -148,6 +148,7 @@ void findWord(char* word)
     if (pWord == NULL)
        {
        printf("Word '%s' not found in the dictionary\n",word);
+       return 0;
        }
     else
        {
@@ -155,6 +156,7 @@ void findWord(char* word)
        printf("Word: %s \n",pWord->word);
        for (i=0; i < pWord->defcount; i++)
   	  printf("\tDefinition %d: %s\n",i+1,pWord->definition[i]);
+      return 1;
        }
     printf("\n");
 

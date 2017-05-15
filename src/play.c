@@ -16,12 +16,8 @@ typedef struct _player
 
 }PLAYER_T;
 
-int get_word(char *word,int row,int col,int dir)
+int insertWord(char *word,int row,int col,int dir)
 {
-  char *word;
-  int row;
-  int col;
-  int dir;
   char *temp=word;
   char onechar;
 	char buffer[256];
@@ -43,13 +39,13 @@ int get_word(char *word,int row,int col,int dir)
         if (onechar < 'A' || onechar > 'Z')
         {
             printf("not valid, try again.\n");
-            break;
+            return 0;
         }
     }
-  return 0;
+  return 1;
 }
 
-int get_direction(int *dir)
+int getAxis(int *dir)
 {
 	char buffer[256];
     char input[16];
@@ -77,17 +73,16 @@ int get_direction(int *dir)
 }
 
 
-int get_location(int *row,int *col)
+int getCoordinate(int *row,int *col)
 {
 	char buffer[256];
     char *temp;
 	char input[16];
-  int *row;
-   int *col;
 
-    printf("enter row/col to start (ex: 8 8) or 'Q' to quit: ");
+
+    printf("enter row/col to start (ex: H 8) or 'Q' to quit: ");
     fgets(buffer, sizeof(buffer), stdin);
-	sscanf(buffer, "%d %d", input);
+	sscanf(buffer, "%s", input);
 
     input[0] &= 0x5F; //converts alpha to UPPERCASE
     if (input[0]=='Q')
@@ -113,13 +108,15 @@ int get_location(int *row,int *col)
 
 void play()
 {
+int row, col, result, direction;
+char word[17];
 char command[256]; /* store command string */
 char inputline[256]; /* string buffer */
 int amountPeople=0;
 int i = 0;
 PLAYER_T* pHead = NULL;
 PLAYER_T* pTail = NULL;
-PLAYER_T *player=NULL;
+PLAYER_T* player=NULL;
 
 
 do
@@ -155,12 +152,21 @@ sscanf(inputline, "%s", command);
 if(!strcasecmp(command,"play"))
   {
     memset(command, 0, sizeof(command));
-    int row , col ;
 
-    
-    get_location(row,col);
-    get_direction(dir);
-    get_word(word,row,col,dir);
+    do result = getCoordinate(&row, &col);
+    while (result == 0);
+    if (result == -1)
+        break;
+
+    do result = getAxis(&direction);
+    while (result == 0);
+    if (result == -1)
+        continue;
+
+    do result = insertWord(word, row, col, direction);
+    while (result == 0);
+    if (result == -1)
+        continue;
 
     printf("Do other player want to challenge this word? (Yes or No)\n");
     fgets(inputline,sizeof(inputline),stdin);
@@ -168,9 +174,8 @@ if(!strcasecmp(command,"play"))
 
     if(!strcasecmp(command,"yes"))
     {
-
-      //findWord();
-      if("There is a word")
+      findWord(word);
+      if(result==0)
       {
         /*The challenger will lose this turn*/
         if(player->pNext==pTail)
@@ -226,6 +231,11 @@ else if(!strcasecmp(command,"END")&& (!strcasecmp(command,"pass")))
       player= player->pNext;
       continue;
     }
+  }
+  else
+  {
+    printf("There is no such command\n");
+    continue;
   }
 }while(1);
 }

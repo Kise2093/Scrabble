@@ -18,3 +18,4 @@ void PrintCard(DECK_T Tile[100], int i);
 
 char createPlayer(int amountPeople);
 int buildDictionary(FILE* pFile);
+int findWord(char* word);
