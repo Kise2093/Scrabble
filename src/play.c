@@ -18,7 +18,6 @@ typedef struct _player
 
 int insertWord(char *word,int row,int col,int dir)
 {
-  char *temp=word;
   char onechar;
 	char buffer[256];
 
@@ -27,13 +26,14 @@ int insertWord(char *word,int row,int col,int dir)
 
 	fgets(buffer, sizeof(buffer), stdin);
 	sscanf(buffer, "%s", word);
+  char *temp=word;
 
     if (word[0] == '\n')  // \newline indicates user requests restart
         return -1;
         // otherwise remove newline char
     word[strcspn(word,"\n")]='\0';
         // and check that only alpha characters are permitted
-    while(*temp)
+    /*while(*temp)
     {
         onechar = *temp++ &= 0x5F; //converts alpha to UPPERCASE
         if (onechar < 'A' || onechar > 'Z')
@@ -41,7 +41,7 @@ int insertWord(char *word,int row,int col,int dir)
             printf("not valid, try again.\n");
             return 0;
         }
-    }
+    }*/
   return 1;
 }
 

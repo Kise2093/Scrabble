@@ -139,11 +139,11 @@ int buildDictionary(FILE* pFile)
  */
 int findWord(char* word)
 {
-    DICT_ENTRY_T* pWord = NULL;
+    DICT_ENTRY_T* pWord = (DICT_ENTRY_T*) hashTableLookup(word);
     printf("\n");
 
 
-    pWord = (DICT_ENTRY_T*) hashTableLookup(word);
+  //  pWord = (DICT_ENTRY_T*) hashTableLookup(word);
 
     if (pWord == NULL)
        {
